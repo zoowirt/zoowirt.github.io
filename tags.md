@@ -1,6 +1,6 @@
 ---
 title: tags.value_counts()
 layout: archive-taxonomies
-permalink: /tags
+permalink: /tags/
 type: tags
 ---
