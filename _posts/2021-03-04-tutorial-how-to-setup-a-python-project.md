@@ -9,6 +9,7 @@ In this tutorial we show how to set up a python project in Intellij from scratch
 The reader will be provided with a project structure which covers many basic topics that are essential in a professional software project, like git, virtual environments, logging, configuration and testing.
 Our second focus is on how to configure and run the project in Intellij.
 
+[See here for the GitHub repository corresponding to this tutorial.](https://github.com/zoowirt/python-project-setup-tutorial)
 
 
 ## Prerequisites
@@ -221,8 +222,27 @@ It is a good idea to introduce logging in the project right from the beginning. 
 
 There are plenty of possibilities for logging in python, and a lot of [documentation](https://docs.python.org/3/howto/logging.html). Here is a configuration that does the job.
 
-* In the terminal with active venv, run `pip install python-json-logger` to install the pythonjsonlogger module. Don't forget to update the `requirements.txt` as above.
-* In the folder `src/util`, create a file `custom_json_formatter.py` and copy&paste the content of the file `src/util/custom_json_formatter.py` from here in the repository. The content is taken [from the pythonjsonlogger's documentation](https://github.com/madzak/python-json-logger).
+In the terminal with active venv, run `pip install python-json-logger` to install the pythonjsonlogger module. Don't forget to update the `requirements.txt` as above.
+
+Then, in the folder `src/util`, create a file `custom_json_formatter.py` with the following content (taken from the [pythonjsonlogger's documentation](https://github.com/madzak/python-json-logger)):
+
+```python
+from datetime import datetime
+from pythonjsonlogger import jsonlogger
+
+# Source: https://github.com/madzak/python-json-logger
+
+class CustomJsonFormatter(jsonlogger.JsonFormatter):
+    def add_fields(self, log_record, record, message_dict):
+        super(CustomJsonFormatter, self).add_fields(log_record, record, message_dict)
+        if not log_record.get('timestamp'):
+            now = datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
+            log_record['timestamp'] = now
+        if log_record.get('level'):
+            log_record['level'] = log_record['level'].upper()
+        else:
+            log_record['level'] = record.levelname
+```
 
 Now introduce the logging configuration to `main.py` as follows:
 ```python
