@@ -1,7 +1,7 @@
 ---
 layout: page
 title:  "Text to Speech Wikipedia Podcast"
-permalink: /use-cases/tts-wikipedia-podcast
+permalink: /use-cases/tts-wikipedia-podcast/
 tags: none
 ---
 
