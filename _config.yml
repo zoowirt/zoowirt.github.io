@@ -1,5 +1,5 @@
 title: Data Science Notes
-description: Machine Learning <br>Computer Vision <br>Programming <br>Visualizations <br> Applications
+description: Machine Learning <br>Computer Vision <br>Programming <br>Visualizations <br>Applications
 
 baseurl: ""
 url: ""
@@ -17,3 +17,5 @@ plugins:
   - jekyll-paginate
 
 remote_theme: ngzhio/jekyll-theme-hamilton
+
+future: false
